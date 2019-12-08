@@ -25,7 +25,6 @@ android {
         versionCode 19
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
-        //baseFeature true
     }
 
     lintOptions {
@@ -70,33 +69,33 @@ android {
             resValue "string", "app_name", "LeafPic Revived (debug)"
         }
     }
-    dynamicFeatures = [':myedit']
 
+    dynamicFeatures = [":mypalette"]
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation 'com.google.android.play:core:1.6.4'
+    api 'com.google.android.play:core:1.6.4'
 
     //exifInterface
-    implementation "androidx.exifinterface:exifinterface:1.0.0"
+    api "androidx.exifinterface:exifinterface:1.0.0"
 
     // google & support
-    implementation "androidx.appcompat:appcompat:1.1.0"
-    implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.0.0"
-    implementation "com.google.android.material:material:1.1.0-alpha10"
-    implementation "androidx.palette:palette:1.0.0"
-    implementation "androidx.browser:browser:1.0.0"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    api "androidx.appcompat:appcompat:1.1.0"
+    api "androidx.cardview:cardview:1.0.0"
+    api "androidx.recyclerview:recyclerview:1.0.0"
+    api "com.google.android.material:material:1.1.0-alpha10"
+    api "androidx.palette:palette:1.0.0"
+    api "androidx.browser:browser:1.0.0"
+    api "androidx.legacy:legacy-support-v4:1.0.0"
 
     //exo-player
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.10.4'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.10.4'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.10.4'
-    implementation 'com.google.android.exoplayer:exoplayer-hls:2.10.4'
-    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.10.4'
+    api 'com.google.android.exoplayer:exoplayer-core:2.10.4'
+    api 'com.google.android.exoplayer:exoplayer-dash:2.10.4'
+    api 'com.google.android.exoplayer:exoplayer-ui:2.10.4'
+    api 'com.google.android.exoplayer:exoplayer-hls:2.10.4'
+    api 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.10.4'
 
     // utils
     implementation 'com.github.bumptech.glide:glide:4.9.0'
@@ -115,17 +114,17 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
 
     // icons
-    implementation "com.mikepenz:iconics-core:4.0.1-b01"
-    implementation "com.mikepenz:iconics-views:4.0.1-b01"
-    implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
-    implementation 'com.mikepenz:community-material-typeface:3.5.95.1-kotlin@aar'
-    implementation 'com.mikepenz:fontawesome-typeface:5.9.0.0-kotlin@aar'
+    api "com.mikepenz:iconics-core:4.0.1-b01"
+    api "com.mikepenz:iconics-views:4.0.1-b01"
+    api 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
+    api 'com.mikepenz:community-material-typeface:3.5.95.1-kotlin@aar'
+    api 'com.mikepenz:fontawesome-typeface:5.9.0.0-kotlin@aar'
 
     // ui
     implementation 'uz.shift:colorpicker:0.5@aar'
     implementation 'com.github.jetradarmobile:desertplaceholder:1.1.1'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
-    //implementation 'com.github.yalantis:ucrop:2.2.2'
+    implementation 'com.github.yalantis:ucrop:2.2.2'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
@@ -134,7 +133,7 @@ dependencies {
     implementation 'cat.ereza:customactivityoncrash:2.2.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:multidex:1.0.3'
+    api 'com.android.support:multidex:1.0.3'
 
     dependencies {
         implementation 'com.github.apcro:Liz:0.6.0'
@@ -159,4 +158,3 @@ if (propFile.canRead()) {
     println 'signing.properties not found'
     android.buildTypes.release.signingConfig = null
 }
-

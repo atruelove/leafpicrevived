@@ -1,7 +1,10 @@
 package com.alienpants.leafpicrevived;
 
+import android.content.Context;
+
 import androidx.multidex.MultiDexApplication;
 
+import com.google.android.play.core.splitcompat.SplitCompat;
 import com.orhanobut.hawk.Hawk;
 
 import com.alienpants.leafpicrevived.util.ApplicationUtils;
@@ -30,5 +33,11 @@ public class App extends MultiDexApplication {
     private void initialiseStorage() {
         Prefs.init(this);
         Hawk.init(this).build();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        SplitCompat.install(this);
     }
 }

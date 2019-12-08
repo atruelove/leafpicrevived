@@ -25,7 +25,7 @@ public abstract class BaseActivity extends ThemedActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if(Prefs.forceEnglish()) forceEnglish();
+        //if(Prefs.forceEnglish()) forceEnglish();
         super.onCreate(savedInstanceState);
     }
 

@@ -35,7 +35,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alienpants.leafpicrevived.R;
-import com.alienpants.leafpicrevived.activities.PaletteActivity;
+
+
+//import com.alienpants.leafpicrevived.activities.PaletteActivity;
+
+
 import com.alienpants.leafpicrevived.adapters.MediaAdapter;
 import com.alienpants.leafpicrevived.data.Album;
 import com.alienpants.leafpicrevived.data.HandlingAlbums;
@@ -332,10 +336,17 @@ public class RvMediaFragment extends BaseMediaGridFragment {
                 return true;
 
             case R.id.action_palette:
+
+
+                /*
                 Intent paletteIntent = new Intent(getActivity(), PaletteActivity.class);
                 paletteIntent.setData(adapter.getFirstSelected().getUri());
                 startActivity(paletteIntent);
+
+                 */
                 return true;
+
+
 
             case R.id.rename:
                 final EditText editTextNewName = new EditText(getActivity());

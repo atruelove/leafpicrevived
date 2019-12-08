@@ -21,11 +21,14 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import com.alienpants.leafpicrevived.App;
 import com.alienpants.leafpicrevived.LookForMediaJob;
 import com.alienpants.leafpicrevived.R;
 import com.alienpants.leafpicrevived.activities.base.SharedMediaActivity;
 import com.alienpants.leafpicrevived.util.PermissionUtils;
 import com.alienpants.leafpicrevived.util.StringUtils;
+import com.alienpants.leafpicrevived.util.preferences.Prefs;
+
 import org.horaapps.liz.ColorPalette;
 
 import java.io.File;
@@ -54,6 +57,9 @@ public class SplashScreen extends SharedMediaActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Prefs.init(App.getInstance());
+        //App newApp = new App();
+        //Prefs.init(newApp);
         setContentView(com.alienpants.leafpicrevived.R.layout.activity_splash);
 
 

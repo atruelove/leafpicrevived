@@ -65,6 +65,11 @@ import com.alienpants.leafpicrevived.util.preferences.Prefs;
 import com.alienpants.leafpicrevived.views.HackyViewPager;
 import org.horaapps.liz.ColorPalette;
 import com.bumptech.glide.Glide;
+import com.google.android.play.core.splitcompat.SplitCompat;
+import com.google.android.play.core.splitinstall.SplitInstallManager;
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory;
+import com.google.android.play.core.splitinstall.SplitInstallRequest;
+import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsColor;
 import com.mikepenz.iconics.typeface.library.community.material.CommunityMaterial;
@@ -83,6 +88,8 @@ import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
+import android.content.Context;
 
 
 /**
@@ -172,6 +179,16 @@ public class SingleMediaActivity extends SharedMediaActivity implements BaseMedi
         adapter = new MediaPagerAdapter(getSupportFragmentManager(), media);
         initUi();
     }
+
+    /*
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        // Emulates installation of future on demand modules using SplitCompat.
+        SplitCompat.install(this);
+    }
+
+     */
 
     private void loadAlbum(Intent intent) {
         album = intent.getParcelableExtra(EXTRA_ARGS_ALBUM);
@@ -675,11 +692,51 @@ public class SingleMediaActivity extends SharedMediaActivity implements BaseMedi
                 break;
 
             case R.id.action_palette:
-                Intent paletteIntent = new Intent(getApplicationContext(), PaletteActivity.class);
+
+                Context context = this;
+                SplitInstallManager splitInstallManager = SplitInstallManagerFactory.create(context);
+
+                SplitInstallRequest request =
+                        SplitInstallRequest
+                                .newBuilder()
+                                .addModule("myedit")
+                                .build();
+                splitInstallManager.startInstall(request);
+
+                int mySessionId = 0;
+
+                SplitInstallStateUpdatedListener listener = state -> {
+                    if (state.sessionId() == mySessionId) {
+                    }
+                };
+                splitInstallManager.registerListener(listener);
+                splitInstallManager
+                        .startInstall(request)
+                        .addOnSuccessListener(sessionId -> {
+                        })
+                        .addOnFailureListener(exception -> {
+
+                        });
+
+                splitInstallManager.unregisterListener(listener);
+
+
+
+
+                Intent paletteIntent = null;
+                try {
+                    paletteIntent = new Intent(getApplicationContext(), Class.forName("com.example.mypalette.activities.PaletteActivity"));
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                //PaletteActivity.class);
                 paletteIntent.setData(LegacyCompatFileProvider.getUri(this,
                         getCurrentMedia().getFile()));
                 paletteIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(paletteIntent);
+
+
+
                 break;
 
             case R.id.action_print:
